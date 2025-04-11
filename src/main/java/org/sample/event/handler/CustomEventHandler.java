@@ -16,8 +16,9 @@ import org.wso2.carbon.identity.openidconnect.OIDCConstants;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
 public class CustomEventHandler extends AbstractEventHandler {
@@ -25,12 +26,12 @@ public class CustomEventHandler extends AbstractEventHandler {
     private static final String HANDLER_NAME = "CustomEventHandler";
     private static final int PRIORITY = 50;
 
-    private static final List<String> SUBSCRIPTIONS = Arrays.asList(
+    private static final Set<String> SUBSCRIPTIONS = new HashSet<>(Arrays.asList(
             EventName.SESSION_TERMINATE.name(),
             EventName.SESSION_EXPIRE.name(),
             OIDCConstants.Event.POST_REVOKE_ACESS_TOKEN_BY_ID,
             OIDCConstants.Event.POST_REVOKE_ACESS_TOKEN
-    );
+    ));
 
     private static Map<String, Object> getSecureObjectCastToMap(final Object in) {
         final Map<String, Object> outMap = new HashMap<>();
